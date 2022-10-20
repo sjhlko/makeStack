@@ -27,13 +27,9 @@ class Stack01Test {
     @Test
     void pushAndPop(){
         Stack01 st = new Stack01();
-        st.push(10);
-        st.push(20);
-
-        Assertions.assertEquals(20,st.pop());
         st.push(30);
         Assertions.assertEquals(30,st.pop());
-        Assertions.assertThrows(RuntimeException.class,()->{
+        Assertions.assertThrows(EmptyStackException.class,()->{
             st.pop();
         });
     }
@@ -51,9 +47,18 @@ class Stack01Test {
     @Test
     void realStack(){
         Stack<Integer> st = new Stack<>();
-        Assertions.assertThrows(RuntimeException.class,()->{
-
+        Assertions.assertThrows(EmptyStackException.class,()->{
+            st.pop();
         });
-        st.pop();
+    }
+    @Test
+    void peek(){
+        Stack01 st = new Stack01();
+        Assertions.assertThrows(EmptyStackException.class,()->{
+            st.peek();
+        });
+        st.push(10);
+        int peeked = st.peek();
+        Assertions.assertEquals(10,peeked);
     }
 }
